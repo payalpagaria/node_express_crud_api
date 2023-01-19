@@ -9,9 +9,15 @@ router.get('/',(req,res)=>{
     res.send(users);
 })
 router.post('/',(req,res)=>{
-    res.send("hello from post");
     const user=req.body;
     users.push({...user,id:uuidv4()});
-});
+    res.send(users);
 
+    
+});
+router.get('/:id',(req,res)=>{
+    const {id}=req.params;
+    const founduser=users.find((user)=>user.id===id);
+    res.send(founduser);
+})
 export default router;
